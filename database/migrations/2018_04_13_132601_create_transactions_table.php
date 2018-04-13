@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTransactionTable extends Migration
+class CreateTransactionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTransactionTable extends Migration
      */
     public function up()
     {
-        Schema::create('tranactions', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('description');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateTransactionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tranactions');
+        Schema::dropIfExists('transactions');
     }
 }
