@@ -2,19 +2,22 @@
 
 namespace Tests\Feature;
 
+use App\Transaction;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ViewTransactionsTest extends TestCase
 {
+    use DatabaseMigrations;
     /**
-     * A basic test example.
-     *
-     * @return void
+     * @test
      */
-    public function testExample()
+    public function it_can_display_all_transactions()
     {
-        $this->assertTrue(true);
+        $transaction = factory('App\Transaction')->create();
+        
+        $this->get('/transactions')->assertSee($transaction->description);
     }
 }
