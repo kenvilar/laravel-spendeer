@@ -15,8 +15,11 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('category_id')->unsigned();
             $table->string('description');
             $table->timestamps();
+            
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 
