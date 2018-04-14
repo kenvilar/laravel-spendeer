@@ -18,8 +18,6 @@ class CreateTransactionsTable extends Migration
             $table->integer('category_id')->unsigned();
             $table->string('description');
             $table->timestamps();
-            
-            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 
