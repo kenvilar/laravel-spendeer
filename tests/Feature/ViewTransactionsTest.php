@@ -16,6 +16,17 @@ class ViewTransactionsTest extends TestCase
     /**
      * @test
      */
+    public function it_allows_only_authenticated_users()
+    {
+        $this->signOut()
+            ->withExceptionHandling()
+            ->get('/transactions')
+            ->assertRedirect('/login');
+    }
+
+    /**
+     * @test
+     */
     public function it_can_display_all_transactions()
     {
         $transaction = createFactory(Transaction::class);
