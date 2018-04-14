@@ -37,4 +37,15 @@ class CreateTransactionsTest extends TestCase
         $this->withExceptionHandling()->post('/transactions', $transactions->toArray())
             ->assertSessionHasErrors('description');
     }
+
+    /**
+     * @test
+     */
+    public function it_cannot_create_a_transaction_without_category()
+    {
+        $transactions = makeFactory(Transaction::class, ['category_id' => null]);
+
+        $this->withExceptionHandling()->post('/transactions', $transactions->toArray())
+            ->assertSessionHasErrors('category_id');
+    }
 }
