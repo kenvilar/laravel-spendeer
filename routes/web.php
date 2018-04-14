@@ -15,7 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/**
+ * Transactions
+ */
 Route::get('/transactions/{category?}', 'TransactionsController@index');
+
+Route::post('/transactions', 'TransactionsController@store');
 
 Auth::routes();
 

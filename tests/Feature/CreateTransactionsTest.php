@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Transaction;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -9,12 +10,17 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class CreateTransactionsTest extends TestCase
 {
     /**
-     * A basic test example.
-     *
-     * @return void
+     * @test
      */
-    public function testExample()
+    public function it_can_create_transactions()
     {
-        $this->assertTrue(true);
+        $transactions = makeFactory(Transaction::class);
+
+        $this->post('/transactions', $transactions->toArray())
+            ->assertRedirect('/transactions');
+
+
+        $this->get('/transactions')
+            ->assertSee($transactions->description);
     }
 }
