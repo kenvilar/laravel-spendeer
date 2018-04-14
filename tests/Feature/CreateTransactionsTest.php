@@ -34,7 +34,7 @@ class CreateTransactionsTest extends TestCase
     {
         $transactions = makeFactory(Transaction::class, ['description' => null]);
 
-        $this->post('/transactions', $transactions->toArray())
+        $this->withExceptionHandling()->post('/transactions', $transactions->toArray())
             ->assertSessionHasErrors('description');
     }
 }
