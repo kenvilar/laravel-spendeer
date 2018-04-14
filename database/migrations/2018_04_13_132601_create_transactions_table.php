@@ -17,6 +17,7 @@ class CreateTransactionsTable extends Migration
             $table->increments('id');
             $table->integer('category_id')->unsigned();
             $table->string('description');
+            $table->float('amount');
             $table->timestamps();
         });
     }

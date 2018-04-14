@@ -40,6 +40,7 @@ class TransactionsController extends Controller
     {
         $this->validate($request, [
             'description' => 'required',
+            'amount' => 'required',
             'category_id' => 'required'
         ]);
 
