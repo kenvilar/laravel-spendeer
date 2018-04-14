@@ -38,6 +38,10 @@ class TransactionsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'description' => 'required'
+        ]);
+
         Transaction::create($request->all());
         return redirect('/transactions');
     }
