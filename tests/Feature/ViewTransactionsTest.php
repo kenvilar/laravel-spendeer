@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Category;
 use App\Transaction;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -22,6 +23,22 @@ class ViewTransactionsTest extends TestCase
             ->withExceptionHandling()
             ->get('/transactions')
             ->assertRedirect('/login');
+    }
+
+    /**
+     * @test
+     */
+    public function it_only_displays_transactions_that_belong_to_current_logged_in_user()
+    {
+        $otherUser = createFactory(User::class);
+
+        $transactions = createFactory(Transaction::class, ['user_id' => $this->user->id]);
+
+        $otherTransaction = createFactory(Transaction::class, ['user_id' => $otherUser->id]);
+
+        $this->get('/transactions')
+            ->assertSee($transactions->description)
+            ->assertDontSee($otherTransaction->description);
     }
 
     /**
