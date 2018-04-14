@@ -9,6 +9,13 @@ class Transaction extends Model
 
     protected $fillable = ['description', 'amount', 'category_id'];
 
+    public static function boot()
+    {
+        static::addGlobalScope('user', function ($query) {
+            $query->where('user_id', auth()->user()->id);
+        });
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);
