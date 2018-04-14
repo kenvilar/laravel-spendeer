@@ -32,10 +32,7 @@ class CreateTransactionsTest extends TestCase
      */
     public function it_cannot_create_a_transaction_without_description()
     {
-        $transactions = makeFactory(Transaction::class, ['description' => null]);
-
-        $this->withExceptionHandling()->post('/transactions', $transactions->toArray())
-            ->assertSessionHasErrors('description');
+        $this->postTransaction(['description' => null])->assertSessionHasErrors('description');
     }
 
     /**
@@ -43,10 +40,7 @@ class CreateTransactionsTest extends TestCase
      */
     public function it_cannot_create_a_transaction_without_category()
     {
-        $transactions = makeFactory(Transaction::class, ['category_id' => null]);
-
-        $this->withExceptionHandling()->post('/transactions', $transactions->toArray())
-            ->assertSessionHasErrors('category_id');
+        $this->postTransaction(['category_id' => null])->assertSessionHasErrors('category_id');
     }
 
     /**
@@ -54,9 +48,13 @@ class CreateTransactionsTest extends TestCase
      */
     public function it_cannot_create_a_transaction_without_amount()
     {
-        $transactions = makeFactory(Transaction::class, ['amount' => null]);
+        $this->postTransaction(['amount' => null])->assertSessionHasErrors('amount');
+    }
 
-        $this->withExceptionHandling()->post('/transactions', $transactions->toArray())
-            ->assertSessionHasErrors('amount');
+    protected function postTransaction($overrides = [])
+    {
+        $transactions = makeFactory(Transaction::class, $overrides);
+
+        return $this->withExceptionHandling()->post('/transactions', $transactions->toArray());
     }
 }
