@@ -46,7 +46,7 @@ class ViewTransactionsTest extends TestCase
      */
     public function it_can_display_all_transactions()
     {
-        $transaction = createFactory(Transaction::class);
+        $transaction = createFactory(Transaction::class, ['user_id' => $this->user->id]);
 
         $this->get('/transactions')
             ->assertSee($transaction->description)
@@ -59,7 +59,7 @@ class ViewTransactionsTest extends TestCase
     public function it_can_filter_transactions_by_category()
     {
         $category = createFactory(Category::class);
-        $transaction = createFactory(Transaction::class, ['category_id' => $category->id]);
+        $transaction = createFactory(Transaction::class, ['category_id' => $category->id, 'user_id' => $this->user->id]);
         $otherTransaction = createFactory(Transaction::class);
 
         $this->get('/transactions/' . $category->slug)
