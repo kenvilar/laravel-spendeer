@@ -48,6 +48,16 @@ abstract class TestCase extends BaseTestCase
 
         return $this;
     }
+
+    protected function makeFactory($class, $overried = [], $times = null)
+    {
+        return makeFactory($class, array_merge(['user_id' => $this->user->id], $overried), $times);
+    }
+
+    protected function createFactory($class, $overried = [], $times = null)
+    {
+        return createFactory($class, array_merge(['user_id' => $this->user->id], $overried), $times);
+    }
 }
 
 class PassThroughHandler extends Handler

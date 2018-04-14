@@ -17,7 +17,7 @@ class CreateTransactionsTest extends TestCase
      */
     public function it_can_create_transactions()
     {
-        $transactions = makeFactory(Transaction::class, ['user_id' => $this->user->id]);
+        $transactions = $this->makeFactory(Transaction::class);
 
         $this->post('/transactions', $transactions->toArray())
             ->assertRedirect('/transactions');
