@@ -46,6 +46,14 @@ class CreateTransactionsTest extends TestCase
     /**
      * @test
      */
+    public function it_cannot_create_a_transaction_without_valid_amount()
+    {
+        $this->postTransaction(['amount' => 'thisIsString'])->assertSessionHasErrors('amount');
+    }
+
+    /**
+     * @test
+     */
     public function it_cannot_create_a_transaction_without_amount()
     {
         $this->postTransaction(['amount' => null])->assertSessionHasErrors('amount');
