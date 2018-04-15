@@ -12,6 +12,7 @@
                             <th>Description</th>
                             <th>Category</th>
                             <th>Amount</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -21,6 +22,15 @@
                                 <td><a href="{{ url('/transactions/' . $transaction->id) }}">{{ $transaction->description }}</a></td>
                                 <td>{{ $transaction->category->name }}</td>
                                 <td>{{ $transaction->amount }}</td>
+                                <td>
+                                    <input type="button" value="EDIT" class="btn btn-info">
+                                    <form action="/transactions/{{ $transaction->id }}" method="POST" style="display: inline;">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <label for="delete"></label>
+                                        <input type="submit" id="delete" value="DELETE" class="btn btn-danger">
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
