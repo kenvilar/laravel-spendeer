@@ -26,6 +26,8 @@ Route::get('/transactions/{transaction}', 'TransactionsController@edit');
 
 Route::patch('/transactions/{transaction}', 'TransactionsController@update');
 
+Route::delete('/transactions/{transaction}', 'TransactionsController@destroy');
+
 Route::get('/transactions/{category?}', 'TransactionsController@index');
 
 Auth::routes();
