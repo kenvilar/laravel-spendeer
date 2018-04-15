@@ -23,7 +23,7 @@
                                 <td>{{ $transaction->category->name }}</td>
                                 <td>{{ $transaction->amount }}</td>
                                 <td>
-                                    <input type="button" value="EDIT" class="btn btn-info">
+                                    <a href="{{ url('/transactions/' . $transaction->id) }}" class="btn btn-info">EDIT</a>
                                     <form action="/transactions/{{ $transaction->id }}" method="POST" style="display: inline;">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
