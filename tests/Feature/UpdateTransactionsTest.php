@@ -2,19 +2,28 @@
 
 namespace Tests\Feature;
 
+use App\Transaction;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UpdateTransactionsTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /**
-     * A basic test example.
-     *
-     * @return void
+     * @test
      */
-    public function testExample()
+    public function it_can_update_transactions()
     {
-        $this->assertTrue(true);
+        $transaction = $this->createFactory(Transaction::class);
+        $newTransaction = $this->makeFactory(Transaction::class);
+
+        $this->patch("/transactions/{$transaction->id}", $newTransaction->toArray())
+            ->assertRedirect("/transactions");
+        
+        $this->get("/transactions")
+            ->assertSee($newTransaction->description);
     }
 }

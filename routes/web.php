@@ -24,6 +24,8 @@ Route::get('/transactions/{category?}', 'TransactionsController@index');
 
 Route::post('/transactions', 'TransactionsController@store');
 
+Route::patch('/transactions/{transaction}', 'TransactionsController@update');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

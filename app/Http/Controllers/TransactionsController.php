@@ -38,7 +38,7 @@ class TransactionsController extends Controller
     public function create()
     {
         $categories = Category::all();
-        
+
         return view('transactions.create')->with(['categories' => $categories]);
     }
 
@@ -57,6 +57,7 @@ class TransactionsController extends Controller
         ]);
 
         Transaction::create($request->all());
+
         return redirect('/transactions');
     }
 
@@ -91,7 +92,15 @@ class TransactionsController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
-        //
+        $this->validate($request, [
+            'description' => 'required',
+            'amount' => 'required|numeric',
+            'category_id' => 'required'
+        ]);
+
+        $transaction->update($request->all());
+
+        return redirect('/transactions');
     }
 
     /**
