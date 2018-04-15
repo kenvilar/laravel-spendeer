@@ -28,7 +28,6 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                             <div class="form-group">
                                 <input type="submit" class="btn btn-outline-info" value="SUBMIT">
                             </div>
