@@ -9,17 +9,17 @@
                         Create Transaction
                     </div>
                     <div class="card-body">
-                        <form action="/transactions" method="POST">
+                        <form class="needs-validation" action="/transactions" method="POST">
                             {{ csrf_field() }}
-                            <div class="form-group">
+                            <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
                                 <label for="description">Description</label>
                                 <input type="text" id="description" class="form-control" name="description">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group {{ $errors->has('amount') ? 'has-error' : '' }}">
                                 <label for="amount">Amount</label>
                                 <input type="number" min="1" id="amount" class="form-control" name="amount">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group {{ $errors->has('category_id') ? 'has-error' : '' }}">
                                 <label for="category_id">Category</label>
                                 <select class="form-control" name="category_id" id="category_id">
                                     <option value=""></option>
