@@ -80,7 +80,9 @@ class TransactionsController extends Controller
      */
     public function edit(Transaction $transaction)
     {
-        //
+        $categories = Category::all();
+
+        return view('transactions.edit')->with(['transaction' => $transaction, 'categories' => $categories]);
     }
 
     /**
