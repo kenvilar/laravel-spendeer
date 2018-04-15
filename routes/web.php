@@ -18,6 +18,8 @@ Route::get('/', function () {
 /**
  * Transactions
  */
+Route::get('/transactions/create', 'TransactionsController@create');
+
 Route::get('/transactions/{category?}', 'TransactionsController@index');
 
 Route::post('/transactions', 'TransactionsController@store');
