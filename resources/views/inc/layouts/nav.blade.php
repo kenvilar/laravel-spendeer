@@ -11,23 +11,25 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
-                <li><a class="nav-link" href="{{ url('/transactions') }}">All Transaction</a></li>
-                <li><a class="nav-link" href="{{ url('/transactions/create') }}">New Transaction</a></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown" role="button"
-                       aria-expanded="false">
-                        Categories
-                    </a>
-                    <ul id="dropdown" class="dropdown-menu" role="menu">
-                        @foreach(\App\Category::all() as $category)
-                            <li>
-                                <a class="nav-link" href="{{ url('/transactions/' . $category->slug) }}">
-                                    {{ $category->name }}
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </li>
+                @auth
+                    <li><a class="nav-link" href="{{ url('/transactions') }}">All Transaction</a></li>
+                    <li><a class="nav-link" href="{{ url('/transactions/create') }}">New Transaction</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown" role="button"
+                           aria-expanded="false">
+                            Categories
+                        </a>
+                        <ul id="dropdown" class="dropdown-menu" role="menu">
+                            @foreach(\App\Category::all() as $category)
+                                <li>
+                                    <a class="nav-link" href="{{ url('/transactions/' . $category->slug) }}">
+                                        {{ $category->name }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                @endauth
             </ul>
 
             <!-- Right Side Of Navbar -->
