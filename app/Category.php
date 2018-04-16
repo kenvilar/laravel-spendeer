@@ -15,7 +15,7 @@ class Category extends Model
         });
 
         static::saving(function ($category) {
-            $category->user_id = $category->user_id ?: auth()->id();
+            $category->user_id = $category->user_id ?: auth()->user()->id;
             $category->slug = $category->slug ?: str_slug($category->name);
         });
     }
