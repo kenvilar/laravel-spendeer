@@ -35,6 +35,8 @@ Route::delete('/transactions/{transaction}', 'TransactionsController@destroy');
  */
 Route::get('/categories', 'CategoriesController@index');
 
+Route::post('/categories', 'CategoriesController@store');
+
 
 
 Auth::routes();

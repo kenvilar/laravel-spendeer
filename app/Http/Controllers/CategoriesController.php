@@ -42,7 +42,13 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        Category::create($request->all());
+
+        return redirect('/categories');
     }
 
     /**
