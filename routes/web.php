@@ -30,6 +30,12 @@ Route::patch('/transactions/{transaction}', 'TransactionsController@update');
 
 Route::delete('/transactions/{transaction}', 'TransactionsController@destroy');
 
+/**
+ * Categories
+ */
+Route::get('/categories', 'CategoriesController@index');
+
+
 
 Auth::routes();
 
