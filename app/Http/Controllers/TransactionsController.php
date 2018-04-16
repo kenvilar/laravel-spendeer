@@ -25,7 +25,7 @@ class TransactionsController extends Controller
      */
     public function index(Category $category)
     {
-        $transactions = Transaction::byCategory($category)->get();
+        $transactions = Transaction::byCategory($category)->paginate(10);
 
         return view('transactions.index')->with(['transactions' => $transactions]);
     }

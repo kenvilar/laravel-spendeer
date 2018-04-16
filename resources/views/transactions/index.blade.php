@@ -19,12 +19,18 @@
                         @foreach($transactions as $transaction)
                             <tr>
                                 <td>{{ $transaction->created_at->format('m/d/Y') }}</td>
-                                <td><a href="{{ url('/transactions/' . $transaction->id) }}">{{ $transaction->description }}</a></td>
+                                <td>
+                                    <a href="{{ url('/transactions/' . $transaction->id) }}">
+                                        {{ $transaction->description }}
+                                    </a>
+                                </td>
                                 <td>{{ $transaction->category->name }}</td>
                                 <td>{{ $transaction->amount }}</td>
                                 <td>
-                                    <a href="{{ url('/transactions/' . $transaction->id) }}" class="btn btn-info">EDIT</a>
-                                    <form action="/transactions/{{ $transaction->id }}" method="POST" style="display: inline;">
+                                    <a href="{{ url('/transactions/' . $transaction->id) }}"
+                                       class="btn btn-info">EDIT</a>
+                                    <form action="/transactions/{{ $transaction->id }}" method="POST"
+                                          style="display: inline;">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
                                         <label for="delete"></label>
@@ -35,6 +41,9 @@
                         @endforeach
                         </tbody>
                     </table>
+                    <div>
+                        {{ $transactions->links() }}
+                    </div>
                 </div>
             </div>
         </div>
