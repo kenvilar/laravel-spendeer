@@ -26,4 +26,19 @@ class CreateCategoriesTest extends TestCase
         $this->get('/categories')
             ->assertSee($categories->name);
     }
+
+    /**
+     * @test
+     */
+    public function it_cannot_create_a_categories_without_name()
+    {
+        $this->postcategory(['name' => null])->assertSessionHasErrors('name');
+    }
+
+    protected function postcategory($overrides = [])
+    {
+        $category = makeFactory(Category::class, $overrides);
+
+        return $this->withExceptionHandling()->post('/categories', $category->toArray());
+    }
 }
