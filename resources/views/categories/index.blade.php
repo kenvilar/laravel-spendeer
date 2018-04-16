@@ -19,15 +19,15 @@
                             <tr>
                                 <td>{{ $category->created_at->format('m/d/Y') }}</td>
                                 <td>
-                                    <a href="{{ url('/categories/' . $category->id) }}">
+                                    <a href="{{ url('/categories/' . $category->slug) }}">
                                         {{ $category->name }}
                                     </a>
                                 </td>
                                 <td>{{ $category->slug }}</td>
                                 <td>
-                                    <a href="{{ url('/categories/' . $category->id) }}"
+                                    <a href="{{ url('/categories/' . $category->slug) }}"
                                        class="btn btn-info">EDIT</a>
-                                    <form action="/categories/{{ $category->id }}" method="POST"
+                                    <form action="/categories/{{ $category->slug }}" method="POST"
                                           style="display: inline;">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}

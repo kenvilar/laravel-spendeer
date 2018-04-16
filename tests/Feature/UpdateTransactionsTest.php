@@ -22,7 +22,7 @@ class UpdateTransactionsTest extends TestCase
 
         $this->patch("/transactions/{$transaction->id}", $newTransaction->toArray())
             ->assertRedirect("/transactions");
-        
+
         $this->get("/transactions")
             ->assertSee($newTransaction->description);
     }

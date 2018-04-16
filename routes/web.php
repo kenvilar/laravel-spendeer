@@ -39,6 +39,9 @@ Route::post('/categories', 'CategoriesController@store');
 
 Route::get('/categories/create', 'CategoriesController@create');
 
+Route::get('/categories/{category}', 'CategoriesController@edit');
+
+Route::patch('/categories/{category}', 'CategoriesController@update');
 
 
 Auth::routes();
