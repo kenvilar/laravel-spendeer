@@ -22,4 +22,15 @@ class ViewCategoriesTest extends TestCase
         $this->get('/categories')
             ->assertSee($categories->name);
     }
+
+    /**
+     * @test
+     */
+    public function it_allows_only_authenticated_users_to_see_categories_list()
+    {
+        $this->signOut()
+            ->withExceptionHandling()
+            ->get('/categories')
+            ->assertRedirect('/login');
+    }
 }
