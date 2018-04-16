@@ -81,4 +81,18 @@ class ViewTransactionsTest extends TestCase
             ->assertSee($pastTransaction->description)
             ->assertDontSee($transaction->description);
     }
+
+    /**
+     * @test
+     */
+    public function it_can_filter_transaction_by_month_by_default()
+    {
+        $transaction = $this->createFactory(Transaction::class);
+        $pastTransaction = $this->createFactory(Transaction::class,
+            ['created_at' => Carbon::now()->subMonth(2)]);
+
+        $this->get('/transactions')
+            ->assertSee($transaction->description)
+            ->assertDontSee($pastTransaction->description);
+    }
 }

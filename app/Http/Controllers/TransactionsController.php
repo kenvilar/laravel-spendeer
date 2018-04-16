@@ -32,6 +32,10 @@ class TransactionsController extends Controller
             $transactions
                 ->where('created_at', '>=', Carbon::parse('first day of ' . request('month')))
                 ->where('created_at', '<=', Carbon::parse('last day of ' . request('month')));
+        } else {
+            $transactions
+                ->where('created_at', '>=', Carbon::parse('first day of this month'))
+                ->where('created_at', '<=', Carbon::parse('last day of this month'));
         }
 
         $transactions = $transactions->paginate(10);
