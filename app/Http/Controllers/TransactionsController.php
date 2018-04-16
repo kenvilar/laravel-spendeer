@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Transaction;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TransactionsController extends Controller
@@ -25,7 +26,15 @@ class TransactionsController extends Controller
      */
     public function index(Category $category)
     {
-        $transactions = Transaction::byCategory($category)->paginate(10);
+        $transactions = Transaction::byCategory($category);
+
+        if (request()->has('month')) {
+            $transactions
+                ->where('created_at', '>=', Carbon::parse('first day of ' . request('month')))
+                ->where('created_at', '<=', Carbon::parse('last day of ' . request('month')));
+        }
+
+        $transactions = $transactions->paginate(10);
 
         return view('transactions.index')->with(['transactions' => $transactions]);
     }
