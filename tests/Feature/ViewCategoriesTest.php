@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Category;
+use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -32,5 +33,21 @@ class ViewCategoriesTest extends TestCase
             ->withExceptionHandling()
             ->get('/categories')
             ->assertRedirect('/login');
+    }
+
+    /**
+     * @test
+     */
+    public function it_only_displays_categories_that_belong_to_current_logged_in_user()
+    {
+        $otherUser = createFactory(User::class);
+
+        $category = createFactory(Category::class, ['user_id' => $this->user->id]);
+
+        $otherCategory = createFactory(Category::class, ['user_id' => $otherUser->id]);
+
+        $this->get('/categories')
+            ->assertSee($category->name)
+            ->assertDontSee($otherCategory->name);
     }
 }
