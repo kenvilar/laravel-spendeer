@@ -37,6 +37,8 @@ Route::get('/categories', 'CategoriesController@index');
 
 Route::post('/categories', 'CategoriesController@store');
 
+Route::get('/categories/create', 'CategoriesController@create');
+
 
 
 Auth::routes();
