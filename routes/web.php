@@ -20,13 +20,11 @@ Route::get('/', function () {
  */
 Route::get('/transactions/create', 'TransactionsController@create');
 
-Route::get('/transactions/{transaction}', 'TransactionsController@edit');
+Route::post('/transactions', 'TransactionsController@store');
 
 Route::get('/transactions/{category?}', 'TransactionsController@index');
 
-Route::post('/transactions', 'TransactionsController@store');
-
-
+Route::get('/transactions/{transaction}', 'TransactionsController@edit');
 
 Route::patch('/transactions/{transaction}', 'TransactionsController@update');
 
