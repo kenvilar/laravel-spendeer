@@ -43,6 +43,8 @@ Route::get('/categories/{category}', 'CategoriesController@edit');
 
 Route::patch('/categories/{category}', 'CategoriesController@update');
 
+Route::delete('/categories/{category}', 'CategoriesController@destroy');
+
 
 Auth::routes();
 
