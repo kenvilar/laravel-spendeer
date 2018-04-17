@@ -110,6 +110,8 @@ class BudgetsController extends Controller
      */
     public function destroy(Budget $budget)
     {
-        //
+        $budget->delete();
+
+        return redirect('/budgets');
     }
 }

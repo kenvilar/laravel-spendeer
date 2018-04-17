@@ -36,6 +36,8 @@ Route::post('/budgets', 'BudgetsController@store');
 
 Route::patch('/budgets/{budget}', 'BudgetsController@update');
 
+Route::delete('/budgets/{budget}', 'BudgetsController@destroy');
+
 
 Auth::routes();
 
