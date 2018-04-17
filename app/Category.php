@@ -18,7 +18,7 @@ class Category extends Model
             $category->user_id = $category->user_id ?: auth()->user()->id;
             $category->slug = $category->slug ?: str_slug($category->name);
         });
-        
+
         static::updating(function ($category) {
             $category->slug = str_slug($category->name);
         });
@@ -28,7 +28,7 @@ class Category extends Model
     {
         return 'slug';
     }
-    
+
     public function transactions()
     {
         return $this->hasMany(Transaction::class, 'category_id');

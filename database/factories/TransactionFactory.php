@@ -1,7 +1,7 @@
 <?php
 
 use App\Category;
-use \App\Transaction;
+use App\Transaction;
 use App\User;
 use Faker\Generator as Faker;
 

@@ -5,9 +5,7 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <div class="card">
-                    <div class="card-header">
-                        Create Budget
-                    </div>
+                    <div class="card-header">Create Budget</div>
                     <div class="card-body">
                         <form class="needs-validation" action="/budgets" method="POST">
                             {{ csrf_field() }}

@@ -10,8 +10,14 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 @auth
-                    <li>
-                        <a class="nav-link" href="{{ url('/budgets/create') }}">New Budget</a>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown" role="button"
+                           aria-expanded="false">Budgets</a>
+                        <ul id="dropdown" class="dropdown-menu" role="menu">
+                            <li><a class="nav-link" href="{{ url('/budgets') }}">All Budgets</a></li>
+                            <li role="separator" class="dropdown-divider"></li>
+                            <li><a class="nav-link" href="{{ url('/budgets/create') }}">New Budget</a></li>
+                        </ul>
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown" role="button"

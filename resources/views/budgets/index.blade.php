@@ -4,9 +4,7 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <div class="col-md-4 float-left">
-                    <h4>Monthly Budget</h4>
-                </div>
+                <div class="col-md-4 float-left"><h4>Monthly Budget</h4></div>
                 <div class="col-md-3 float-right">
                     <form action="" id="month-form" method="GET">
                         <label for="month">
@@ -46,9 +44,7 @@
                         @foreach($budgets as $budget)
                             <tr>
                                 <td>
-                                    <a href="{{ url('/budgets/' . $budget->id) }}">
-                                        {{ $budget->category->name }}
-                                    </a>
+                                    <a href="{{ url('/budgets/' . $budget->id) }}">{{ $budget->category->name }}</a>
                                 </td>
                                 <td>{{ $budget->amount }}</td>
                                 <td>{{ $budget->balance() }}</td>
