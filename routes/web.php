@@ -34,6 +34,8 @@ Route::get('/budgets', 'BudgetsController@index');
 
 Route::post('/budgets', 'BudgetsController@store');
 
+Route::patch('/budgets/{budget}', 'BudgetsController@update');
+
 
 Auth::routes();
 

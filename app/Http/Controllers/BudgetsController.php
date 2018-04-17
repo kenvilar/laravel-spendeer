@@ -91,7 +91,15 @@ class BudgetsController extends Controller
      */
     public function update(Request $request, Budget $budget)
     {
-        //
+        $this->validate($request, [
+            'amount' => 'required',
+            'category_id' => 'required',
+            'budget_date' => 'required'
+        ]);
+
+        $budget->updateOrInsert(request()->all());
+
+        return redirect('/budgets');
     }
 
     /**
