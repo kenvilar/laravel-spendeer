@@ -18,10 +18,6 @@ class Budget extends Model
         static::saving(function ($budget) {
             $budget->user_id = $budget->user_id ?: auth()->user()->id;
         });
-
-        /*static::updating(function ($category) {
-            $category->slug = str_slug($category->name);
-        });*/
     }
 
     public function category()

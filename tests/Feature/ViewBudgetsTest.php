@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Budget;
 use App\Category;
+use App\User;
 use Carbon\Carbon;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -40,5 +41,24 @@ class ViewBudgetsTest extends TestCase
             ->withExceptionHandling()
             ->get('/budgets')
             ->assertRedirect('/login');
+    }
+
+    /**
+     * @test
+     */
+    public function it_only_displays_budgets_that_belong_to_current_logged_in_user()
+    {
+        $category = $this->createFactory(Category::class);
+
+        $otherUser = createFactory(User::class);
+
+        $budget = createFactory(Budget::class,
+            ['user_id' => $this->user->id, 'category_id' => $category->id]);
+
+        $otherBudget = createFactory(Budget::class, ['user_id' => $otherUser->id]);
+
+        $this->get('/budgets')
+            ->assertSee((string)$budget->amount)
+            ->assertDontSee((string)$otherBudget->amount);
     }
 }
