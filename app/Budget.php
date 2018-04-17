@@ -7,6 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Budget extends Model
 {
+    protected $fillable = ['amount', 'budget_date', 'category_id', 'user_id'];
+
+    public static function boot()
+    {
+        static::addGlobalScope('user', function ($query) {
+            $query->where('user_id', auth()->user()->id);
+        });
+
+        static::saving(function ($budget) {
+            $budget->user_id = $budget->user_id ?: auth()->user()->id;
+        });
+
+        /*static::updating(function ($category) {
+            $category->slug = str_slug($category->name);
+        });*/
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');

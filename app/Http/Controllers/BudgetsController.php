@@ -49,7 +49,13 @@ class BudgetsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'amount' => 'required'
+        ]);
+
+        Budget::create(request()->all());
+
+        return redirect('/budgets');
     }
 
     /**

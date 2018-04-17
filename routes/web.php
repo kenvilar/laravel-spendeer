@@ -32,6 +32,8 @@ Route::resource('/categories', 'CategoriesController', ['except' => ['show']]);
  */
 Route::get('/budgets', 'BudgetsController@index');
 
+Route::post('/budgets', 'BudgetsController@store');
+
 
 Auth::routes();
 
