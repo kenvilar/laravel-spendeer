@@ -90,7 +90,15 @@ class BudgetsController extends Controller
      */
     public function edit(Budget $budget)
     {
-        //
+        $months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+        $categories = Category::all();
+
+        return view('budgets.edit')->with([
+            'budget' => $budget,
+            'categories' => $categories,
+            'months' => $months
+        ]);
     }
 
     /**
@@ -108,7 +116,7 @@ class BudgetsController extends Controller
             'budget_date' => 'required'
         ]);
 
-        $budget->updateOrInsert(request()->all());
+        $budget->update(request()->all());
 
         return redirect('/budgets');
     }

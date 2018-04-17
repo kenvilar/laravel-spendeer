@@ -25,16 +25,18 @@ Route::get('/transactions/{category?}', 'TransactionsController@index');
 /**
  * Categories
  */
-Route::resource('/categories', 'CategoriesController', ['except' => ['show']]);
+Route::resource('/categories', 'CategoriesController');
 
 /**
- * Budget
+ * Budgets
  */
 Route::get('/budgets', 'BudgetsController@index');
 
 Route::get('/budgets/create', 'BudgetsController@create');
 
 Route::post('/budgets', 'BudgetsController@store');
+
+Route::get('/budgets/{budget}', 'BudgetsController@edit');
 
 Route::patch('/budgets/{budget}', 'BudgetsController@update');
 
