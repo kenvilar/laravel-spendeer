@@ -2,6 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Budget;
+use App\Category;
+use Carbon\Carbon;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -14,8 +17,17 @@ class ViewBudgetsTest extends TestCase
     /**
      * @test
      */
-    public function it_()
+    public function it_should_display_budgets_for_the_current_month_by_default()
     {
-        $this->assertTrue(true);
+        $category = $this->createFactory(Category::class);
+        $budgetForThisMonth = $this->createFactory(Budget::class, ['category_id' => $category->id]);
+        $budgetForLastMonth = $this->createFactory(Budget::class,
+            ['category_id' => $category->id, 'budget_date' => Carbon::now()->subMonth(1)]);
+
+        $this->get('/budgets')
+            ->assertSee((string)$budgetForThisMonth->amount)
+            ->assertSee((string)$budgetForThisMonth->balance())
+            ->assertDontSee((string)$budgetForLastMonth->amount)
+            ->assertDontSee((string)$budgetForLastMonth->balance());
     }
 }

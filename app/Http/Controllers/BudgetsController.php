@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Budget;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class BudgetsController extends Controller
@@ -14,7 +15,15 @@ class BudgetsController extends Controller
      */
     public function index()
     {
-        //
+        $currentMonth = request('month') ?: Carbon::now()->format('M');
+
+        if (request()->has('month')) {
+            $budgets = Budget::byMonth(request('month'))->get();
+        } else {
+            $budgets = Budget::byMonth('this month')->get();
+        }
+
+        return view('budgets.index')->with(['budgets' => $budgets, 'currentMonth' => $currentMonth]);
     }
 
     /**
@@ -30,7 +39,7 @@ class BudgetsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +50,7 @@ class BudgetsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Budget  $budget
+     * @param  \App\Budget $budget
      * @return \Illuminate\Http\Response
      */
     public function show(Budget $budget)
@@ -52,7 +61,7 @@ class BudgetsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Budget  $budget
+     * @param  \App\Budget $budget
      * @return \Illuminate\Http\Response
      */
     public function edit(Budget $budget)
@@ -63,8 +72,8 @@ class BudgetsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Budget  $budget
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Budget $budget
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Budget $budget)
@@ -75,7 +84,7 @@ class BudgetsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Budget  $budget
+     * @param  \App\Budget $budget
      * @return \Illuminate\Http\Response
      */
     public function destroy(Budget $budget)

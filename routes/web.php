@@ -27,6 +27,11 @@ Route::get('/transactions/{category?}', 'TransactionsController@index');
  */
 Route::resource('/categories', 'CategoriesController', ['except' => ['show']]);
 
+/**
+ * Budget
+ */
+Route::get('/budgets', 'BudgetsController@index');
+
 
 Auth::routes();
 
