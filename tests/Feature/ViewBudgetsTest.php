@@ -54,7 +54,7 @@ class ViewBudgetsTest extends TestCase
 
         $budget = $this->createFactory(Budget::class, ['category_id' => $category->id]);
 
-        $otherBudget = createFactory(Budget::class, ['user_id' => $otherUser->id]);
+        $otherBudget = createFactory(Budget::class, ['category_id' => $category->id, 'user_id' => $otherUser->id]);
 
         $this->get('/budgets')
             ->assertSee((string)$budget->amount)
