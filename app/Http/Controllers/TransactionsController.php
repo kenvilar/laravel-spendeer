@@ -35,6 +35,8 @@ class TransactionsController extends Controller
         }
 
         $transactions = $transactions->paginate(10);
+        
+        //dd($transactions);
 
         return view('transactions.index')->with(['transactions' => $transactions]);
     }

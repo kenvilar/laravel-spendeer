@@ -31,9 +31,11 @@ class ViewTransactionsTest extends TestCase
      */
     public function it_only_displays_transactions_that_belong_to_current_logged_in_user()
     {
+        $category = $this->createFactory(Category::class);
+
         $otherUser = createFactory(User::class);
 
-        $transactions = createFactory(Transaction::class, ['user_id' => $this->user->id]);
+        $transactions = createFactory(Transaction::class, ['user_id' => $this->user->id, 'category_id' => $category->id]);
 
         $otherTransaction = createFactory(Transaction::class, ['user_id' => $otherUser->id]);
 
@@ -47,7 +49,9 @@ class ViewTransactionsTest extends TestCase
      */
     public function it_can_display_all_transactions()
     {
-        $transaction = $this->createFactory(Transaction::class);
+        $category = $this->createFactory(Category::class);
+
+        $transaction = $this->createFactory(Transaction::class, ['category_id' => $category->id]);
 
         $this->get('/transactions')
             ->assertSee($transaction->description)
@@ -59,7 +63,7 @@ class ViewTransactionsTest extends TestCase
      */
     public function it_can_filter_transactions_by_category()
     {
-        $category = createFactory(Category::class);
+        $category = $this->createFactory(Category::class);
         $transaction = $this->createFactory(Transaction::class, ['category_id' => $category->id]);
         $otherTransaction = $this->createFactory(Transaction::class);
 
@@ -73,9 +77,10 @@ class ViewTransactionsTest extends TestCase
      */
     public function it_can_filter_transaction_by_month()
     {
+        $category = $this->createFactory(Category::class);
         $transaction = $this->createFactory(Transaction::class);
         $pastTransaction = $this->createFactory(Transaction::class,
-            ['created_at' => Carbon::now()->subMonth(2)]);
+            ['category_id' => $category->id, 'created_at' => Carbon::now()->subMonth(2)]);
         
         $this->get('/transactions?month=' . Carbon::now()->subMonth(2)->format('M') )
             ->assertSee($pastTransaction->description)
@@ -87,7 +92,8 @@ class ViewTransactionsTest extends TestCase
      */
     public function it_can_filter_transaction_by_month_by_default()
     {
-        $transaction = $this->createFactory(Transaction::class);
+        $category = $this->createFactory(Category::class);
+        $transaction = $this->createFactory(Transaction::class, ['category_id' => $category->id]);
         $pastTransaction = $this->createFactory(Transaction::class,
             ['created_at' => Carbon::now()->subMonth(2)]);
 

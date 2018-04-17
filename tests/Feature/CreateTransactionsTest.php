@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Category;
 use App\Transaction;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
@@ -17,7 +18,9 @@ class CreateTransactionsTest extends TestCase
      */
     public function it_can_create_transactions()
     {
-        $transactions = $this->makeFactory(Transaction::class);
+        $category = $this->createFactory(Category::class);
+
+        $transactions = $this->makeFactory(Transaction::class, ['category_id' => $category->id]);
 
         $this->post('/transactions', $transactions->toArray())
             ->assertRedirect('/transactions');

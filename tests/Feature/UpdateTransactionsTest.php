@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Category;
 use App\Transaction;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -17,8 +18,9 @@ class UpdateTransactionsTest extends TestCase
      */
     public function it_can_update_transactions()
     {
+        $category = $this->createFactory(Category::class);
         $transaction = $this->createFactory(Transaction::class);
-        $newTransaction = $this->makeFactory(Transaction::class);
+        $newTransaction = $this->makeFactory(Transaction::class, ['category_id' => $category->id]);
 
         $this->patch("/transactions/{$transaction->id}", $newTransaction->toArray())
             ->assertRedirect("/transactions");
