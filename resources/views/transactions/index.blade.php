@@ -4,27 +4,30 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <div class="col-md-3 offset-md-9 text-right">
-                    <form action="" id="month-form" method="GET">
-                        <label for="month">
-                            <select tabindex="0" role="button" class="form-control" name="month" id="month"
-                                    onchange="document.getElementById('month-form').submit()">
-                                <option value="">Please select month</option>
-                                <option value="Jan" {{ request('month') === 'Jan' ? 'selected' : '' }}>January</option>
-                                <option value="Feb" {{ request('month') === 'Feb' ? 'selected' : '' }}>February</option>
-                                <option value="Mar" {{ request('month') === 'Mar' ? 'selected' : '' }}>March</option>
-                                <option value="Apr" {{ request('month') === 'Apr' ? 'selected' : '' }}>April</option>
-                                <option value="May" {{ request('month') === 'May' ? 'selected' : '' }}>May</option>
-                                <option value="Jun" {{ request('month') === 'Jun' ? 'selected' : '' }}>June</option>
-                                <option value="Jul" {{ request('month') === 'Jul' ? 'selected' : '' }}>July</option>
-                                <option value="Aug" {{ request('month') === 'Aug' ? 'selected' : '' }}>August</option>
-                                <option value="Sep" {{ request('month') === 'Sep' ? 'selected' : '' }}>September</option>
-                                <option value="Oct" {{ request('month') === 'Oct' ? 'selected' : '' }}>October</option>
-                                <option value="Nov" {{ request('month') === 'Nov' ? 'selected' : '' }}>November</option>
-                                <option value="Dec" {{ request('month') === 'Dec' ? 'selected' : '' }}>December</option>
-                            </select>
-                        </label>
-                    </form>
+                <div class="row">
+                    <div class="col-md-4"><h4>Transactions</h4></div>
+                    <div class="col-md-4 offset-md-4 text-right">
+                        <form action="" id="month-form" method="GET">
+                            <label for="month">
+                                <select tabindex="0" role="button" class="form-control" name="month" id="month"
+                                        onchange="document.getElementById('month-form').submit()">
+                                    <option value="">Please select month</option>
+                                    <option value="Jan" {{ request('month') === 'Jan' ? 'selected' : '' }}>January</option>
+                                    <option value="Feb" {{ request('month') === 'Feb' ? 'selected' : '' }}>February</option>
+                                    <option value="Mar" {{ request('month') === 'Mar' ? 'selected' : '' }}>March</option>
+                                    <option value="Apr" {{ request('month') === 'Apr' ? 'selected' : '' }}>April</option>
+                                    <option value="May" {{ request('month') === 'May' ? 'selected' : '' }}>May</option>
+                                    <option value="Jun" {{ request('month') === 'Jun' ? 'selected' : '' }}>June</option>
+                                    <option value="Jul" {{ request('month') === 'Jul' ? 'selected' : '' }}>July</option>
+                                    <option value="Aug" {{ request('month') === 'Aug' ? 'selected' : '' }}>August</option>
+                                    <option value="Sep" {{ request('month') === 'Sep' ? 'selected' : '' }}>September</option>
+                                    <option value="Oct" {{ request('month') === 'Oct' ? 'selected' : '' }}>October</option>
+                                    <option value="Nov" {{ request('month') === 'Nov' ? 'selected' : '' }}>November</option>
+                                    <option value="Dec" {{ request('month') === 'Dec' ? 'selected' : '' }}>December</option>
+                                </select>
+                            </label>
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="card-body">
