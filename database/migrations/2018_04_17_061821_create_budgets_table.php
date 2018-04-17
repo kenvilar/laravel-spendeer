@@ -17,8 +17,8 @@ class CreateBudgetsTable extends Migration
             $table->increments('id');
             $table->float('amount');
             $table->timestamp('budget_date');
-            $table->integer('category_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->unsignedInteger('category_id');
+            $table->unsignedInteger('user_id');
             $table->timestamps();
         });
     }
