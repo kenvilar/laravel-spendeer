@@ -35,7 +35,7 @@ class TransactionsController extends Controller
         }
 
         $transactions = $transactions->paginate(10);
-        
+
         //dd($transactions);
 
         return view('transactions.index')->with(['transactions' => $transactions]);
@@ -80,7 +80,9 @@ class TransactionsController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        //
+        $categories = Category::all();
+
+        return view('transactions.edit')->with(['transaction' => $transaction, 'categories' => $categories]);
     }
 
     /**

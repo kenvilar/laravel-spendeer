@@ -16,29 +16,19 @@ Route::get('/', 'BudgetsController@index');
 /**
  * Transactions
  */
-Route::resource('/transactions', 'TransactionsController', ['except' => ['show']]);
+Route::resource('transactions', 'TransactionsController');
 
 Route::get('/transactions/{category?}', 'TransactionsController@index');
 
 /**
  * Categories
  */
-Route::resource('/categories', 'CategoriesController');
+Route::resource('categories', 'CategoriesController');
 
 /**
  * Budgets
  */
-Route::get('/budgets', 'BudgetsController@index');
-
-Route::get('/budgets/create', 'BudgetsController@create');
-
-Route::post('/budgets', 'BudgetsController@store');
-
-Route::get('/budgets/{budget}', 'BudgetsController@edit');
-
-Route::patch('/budgets/{budget}', 'BudgetsController@update');
-
-Route::delete('/budgets/{budget}', 'BudgetsController@destroy');
+Route::resource('budgets', 'BudgetsController');
 
 
 Auth::routes();

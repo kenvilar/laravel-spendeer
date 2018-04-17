@@ -79,7 +79,15 @@ class BudgetsController extends Controller
      */
     public function show(Budget $budget)
     {
-        //
+        $months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+        $categories = Category::all();
+
+        return view('budgets.edit')->with([
+            'budget' => $budget,
+            'categories' => $categories,
+            'months' => $months
+        ]);
     }
 
     /**
