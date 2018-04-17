@@ -23,6 +23,6 @@ class DeleteBudgetsTest extends TestCase
             ->assertRedirect('/budgets');
 
         $this->get('/budgets')
-            ->assertDontSee($budget->amount);
+            ->assertDontSee((string)$budget->amount);
     }
 }
