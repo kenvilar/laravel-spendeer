@@ -18,32 +18,14 @@ Route::get('/', function () {
 /**
  * Transactions
  */
-Route::get('/transactions/create', 'TransactionsController@create');
-
-Route::post('/transactions', 'TransactionsController@store');
+Route::resource('/transactions', 'TransactionsController', ['except' => ['show']]);
 
 Route::get('/transactions/{category?}', 'TransactionsController@index');
-
-Route::get('/transactions/{transaction}', 'TransactionsController@edit');
-
-Route::patch('/transactions/{transaction}', 'TransactionsController@update');
-
-Route::delete('/transactions/{transaction}', 'TransactionsController@destroy');
 
 /**
  * Categories
  */
-Route::get('/categories', 'CategoriesController@index');
-
-Route::post('/categories', 'CategoriesController@store');
-
-Route::get('/categories/create', 'CategoriesController@create');
-
-Route::get('/categories/{category}', 'CategoriesController@edit');
-
-Route::patch('/categories/{category}', 'CategoriesController@update');
-
-Route::delete('/categories/{category}', 'CategoriesController@destroy');
+Route::resource('/categories', 'CategoriesController', ['except' => ['show']]);
 
 
 Auth::routes();
