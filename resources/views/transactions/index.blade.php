@@ -47,13 +47,13 @@
                             <tr>
                                 <td>{{ $transaction->created_at->format('m/d/Y') }}</td>
                                 <td>
-                                    <a href="{{ url('/transactions/' . $transaction->id) }}">
+                                    <a href="{{ url('/transactions/' . $transaction->id . '/edit') }}">
                                         {{ $transaction->description }}</a>
                                 </td>
                                 <td>{{ $transaction->category->name }}</td>
                                 <td>{{ $transaction->amount }}</td>
                                 <td>
-                                    <a href="{{ url('/transactions/' . $transaction->id) }}"
+                                    <a href="{{ url('/transactions/' . $transaction->id . '/edit') }}"
                                        class="btn btn-info">EDIT</a>
                                     <form action="/transactions/{{ $transaction->id }}" method="POST"
                                           style="display: inline;">
