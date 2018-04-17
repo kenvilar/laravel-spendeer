@@ -30,4 +30,15 @@ class ViewBudgetsTest extends TestCase
             ->assertDontSee((string)$budgetForLastMonth->amount)
             ->assertDontSee((string)$budgetForLastMonth->balance());
     }
+
+    /**
+     * @test
+     */
+    public function it_allows_only_authenticated_users_to_see_budget_list()
+    {
+        $this->signOut()
+            ->withExceptionHandling()
+            ->get('/budgets')
+            ->assertRedirect('/login');
+    }
 }
