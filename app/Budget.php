@@ -28,7 +28,7 @@ class Budget extends Model
 
     public function balance()
     {
-        return (int)($this->amount - $this->category->transactions->sum('amount'));
+        return (float)($this->amount - $this->category->transactions->sum('amount'));
     }
 
     public function scopeByMonth($query, $month = 'this month')
