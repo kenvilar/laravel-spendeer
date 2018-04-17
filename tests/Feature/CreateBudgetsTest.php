@@ -6,8 +6,6 @@ use App\Budget;
 use App\Category;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CreateBudgetsTest extends TestCase
 {

@@ -6,8 +6,6 @@ use App\Category;
 use App\Transaction;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CreateTransactionsTest extends TestCase
 {

@@ -4,11 +4,8 @@ namespace Tests\Feature;
 
 use App\Budget;
 use App\Category;
-use App\Transaction;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UpdateBudgetsTest extends TestCase
 {

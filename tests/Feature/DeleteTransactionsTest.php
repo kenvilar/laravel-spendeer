@@ -5,8 +5,6 @@ namespace Tests\Feature;
 use App\Transaction;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class DeleteTransactionsTest extends TestCase
 {

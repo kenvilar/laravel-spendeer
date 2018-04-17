@@ -6,8 +6,6 @@ use App\Category;
 use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ViewCategoriesTest extends TestCase
 {
