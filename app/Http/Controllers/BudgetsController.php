@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Budget;
+use App\Category;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -38,7 +39,17 @@ class BudgetsController extends Controller
      */
     public function create()
     {
-        //
+        $months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+        $budget = new Budget();
+
+        $categories = Category::all();
+
+        return view('budgets.create')->with([
+            'categories' => $categories,
+            'months' => $months,
+            'budget' => $budget
+        ]);
     }
 
     /**

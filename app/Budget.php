@@ -17,6 +17,7 @@ class Budget extends Model
 
         static::saving(function ($budget) {
             $budget->user_id = $budget->user_id ?: auth()->user()->id;
+            $budget->budget_date = Carbon::parse($budget->budget_date)->toDateTimeString();
         });
     }
 
@@ -34,5 +35,10 @@ class Budget extends Model
     {
         $query->where('budget_date', '>=', Carbon::parse('first day of ' . $month))
             ->where('budget_date', '<=', Carbon::parse('last day of ' . $month));
+    }
+
+    public function getMonth()
+    {
+        return isset($this->budget_date) ? Carbon::parse($this->budget_date)->format('M') : null;
     }
 }
