@@ -42,7 +42,7 @@ class ViewCategoriesTest extends TestCase
     {
         $otherUser = createFactory(User::class);
 
-        $category = createFactory(Category::class, ['user_id' => $this->user->id]);
+        $category = $this->createFactory(Category::class);
 
         $otherCategory = createFactory(Category::class, ['user_id' => $otherUser->id]);
 
