@@ -4,10 +4,10 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <div class="col-md-4">
+                <div class="col-md-4 float-left">
                     <h4>Monthly Budget</h4>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 float-right">
                     <form action="" id="month-form" method="GET">
                         <label for="month">
                             <select tabindex="0" role="button" class="form-control" name="month" id="month"
