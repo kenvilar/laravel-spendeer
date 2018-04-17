@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Budget;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -14,8 +15,14 @@ class DeleteBudgetsTest extends TestCase
     /**
      * @test
      */
-    public function it_()
+    public function it_can_delete_budgets()
     {
-        $this->assertTrue(true);
+        $budget = $this->createFactory(Budget::class);
+
+        $this->delete('/budgets/' . $budget->id)
+            ->assertRedirect('/budgets');
+
+        $this->get('/budgets')
+            ->assertDontSee($budget->amount);
     }
 }
