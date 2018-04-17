@@ -52,8 +52,7 @@ class ViewBudgetsTest extends TestCase
 
         $otherUser = createFactory(User::class);
 
-        $budget = createFactory(Budget::class,
-            ['user_id' => $this->user->id, 'category_id' => $category->id]);
+        $budget = $this->createFactory(Budget::class, ['category_id' => $category->id]);
 
         $otherBudget = createFactory(Budget::class, ['user_id' => $otherUser->id]);
 
